@@ -8,6 +8,7 @@ Il s'agit de declaration de code javascript
     -Creaction de ses propre element HTML
     -On parle "de composant"
     ( à finir)
+
 - Le passage de  parametre via props:
       <ExpenseItem
         title="BigTitle"
@@ -85,3 +86,20 @@ limitation de JSX:
             
 -UseReducer: comme useState mais  pour les state plus complex exemple verifier la validit& de l email et verifier la valeur
 -UseConext: permet de rendre des données accessibles par tout les autres composant directelent sans utiliser props et pas passer par  tt les parents
+
+-En cas de changement d'un composant tout les element qui sont dans sa fction JSX sont reevalués
+-React.memo  peut etre utiliser si votre composant rend le même résultat avec les mêmes props, vous pouvez l'envelopper dans un appel à React.memo pour une amélioration des performances dans certains cas en mémorisant le résultat. Cela signifie que React ignorera le rendu du composant et réutilisera le dernier résultat rendu.
+React.memo ne vérifie que les modifications apportées aux props. Si votre composant de fonction enveloppé dans React.memo a un useState, useReducer ou useContext Hook dans son implémentation, il sera toujours restitué lorsque l'état ou le contexte change.
+useMemo recalculera la valeur mémoïsée seulement si une des entrées a changé. Cette optimisation permet d’éviter des calculs coûteux à chaque rendu.
+
+-useCallback renverra une version mémoïsée de la fonction de rappel qui changera uniquement si une des entrées a changé. C’est utile pour passer des fonctions de rappel à des composants enfants optimisés qui se basent sur une égalité référentielle pour éviter des rendus superflus
+
+
+-La communication avec la base de sonnées se fait  via des echange http avec le backend. l'envoi d'une requetese fait via fetch
+- on utilise state à la place de ref pour  la recuperation d'un input dans le cas ou :
+	 on veut faire des validations à chaque entrée clavier( onchange) state le fait mais pas ref
+	 si on veut faire un resset à l input, avec ref on est mené à  manipuler le dom et c'est à eviter
+	 
+-Custum hook:
+Construire vos propres Hooks vous permet d’extraire la logique d’un composant sous forme de fonctions réutilisables.
+
